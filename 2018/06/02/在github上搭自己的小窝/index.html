@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="阿翎の程序猿之路">
 <meta property="og:description" content="1 缘由想起来在github上搭自己的小窝，源自于一次课堂作业。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/2-1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/2-2.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/2-3.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/2-4.jpg">
-<meta property="og:updated_time" content="2018-06-03T02:55:03.505Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/在github上搭自己的小窝/在github上搭自己的小窝/2-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/在github上搭自己的小窝/在github上搭自己的小窝/2-2.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/在github上搭自己的小窝/在github上搭自己的小窝/2-3.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/在github上搭自己的小窝/在github上搭自己的小窝/2-4.jpg">
+<meta property="og:updated_time" content="2018-06-10T02:51:19.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在github上搭自己的小窝">
 <meta name="twitter:description" content="1 缘由想起来在github上搭自己的小窝，源自于一次课堂作业。">
-<meta name="twitter:image" content="http://yoursite.com/2018/06/02/images/2-1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/02/在github上搭自己的小窝/在github上搭自己的小窝/2-1.jpg">
 
 
 
@@ -459,7 +459,7 @@
 <p>这时候在浏览器输入 <a href="http://localhost:4001/就可以看见网页和模板了" target="_blank" rel="noopener">http://localhost:4001/就可以看见网页和模板了</a></p>
 <p>整个Hexo的建站过程是利用theme里面，你采用的模板来进行的网站生成，并且把source文件夹中的Markdown 和 HTML 文件解析，并放到 public 文件夹，而其他文件会被拷贝过去。这样就在blog的public文件夹中生成了一个静态页面网站。</p>
 <p>接下来我们需要把这个网站放到github中去，以便于我们输入网址就可以访问。</p>
-<p><img src="..\images\2-1.jpg" alt="2-1"></p>
+<p><img src="在github上搭自己的小窝\2-1.jpg" alt="2-1"></p>
 <h3 id="3-3-2-搭环境之Github"><a href="#3-3-2-搭环境之Github" class="headerlink" title="3.3.2 搭环境之Github"></a>3.3.2 搭环境之Github</h3><p>在Blog文件夹中，右键gitbash 或者是在刚才的bash中ctrl+c停止网站运行。之后就将gitbash和github相连，我这里假定 github的邮箱是<a href="mailto:xxx@qq.com" target="_blank" rel="noopener">xxx@qq.com</a>，用户名是XaX。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "xxx@qq.com"</span><br></pre></td></tr></table></figure>
 <p>会有提示生成了公用钥匙</p>
@@ -470,11 +470,11 @@
 <p>然后输入 title：blog》Key： 把刚才复制的粘贴进去》Add SSH key</p>
 <p>这个时候我们就可以用github来远程ssh登录Github了，我们需要先在浏览器里，<a href="https://github.com/new新建一个和自己的用户名XaX一样但是加上.github.io的Repository" target="_blank" rel="noopener">https://github.com/new新建一个和自己的用户名XaX一样但是加上.github.io的Repository</a> 仓库，即XaX.github.io，一定要建立，不然会莫名其妙踩坑。</p>
 <h3 id="3-3-3-博客配置-站点设置"><a href="#3-3-3-博客配置-站点设置" class="headerlink" title="3.3.3 博客配置(站点设置)"></a>3.3.3 博客配置(站点设置)</h3><p>在Blog目录下，用sublime打开_config.yml（站点配置）文件，修改参数信息 。这个后面在美化里还要讲，因为涉及到主页live2d萌妹子的问题。</p>
-<p><img src="../images/2-2.png" alt="站点设置"></p>
+<p><img src="在github上搭自己的小窝/2-2.png" alt="站点设置"></p>
 <p>特别提醒，在每个参数的：后都要加一个空格，显示效果如下：</p>
 <p>就是左边的那些，这里还有个坑，初始配置默认用的是landscape模板</p>
 <p>language： zh-CN而后面我们会讲到，我用的是Next模板。要把这一栏改成zh-Hans</p>
-<p><img src="../images/2-3.png" alt="显示效果"></p>
+<p><img src="在github上搭自己的小窝/2-3.png" alt="显示效果"></p>
 <p>配置部署（我的是sheldon-pan，修改成自己的）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/sheldon-pan/sheldon-pan.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <h2 id="3-4-新建文章"><a href="#3-4-新建文章" class="headerlink" title="3.4 新建文章"></a>3.4 新建文章</h2><p>在刚才的gitbash中，应该l路径还是在blog目录下输入</p>
@@ -486,9 +486,9 @@
 <p>保存，然后执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">C:\test\Blog</span><br><span class="line"><span class="meta">$</span> hexo clean  #清除掉Public文件夹</span><br><span class="line">INFO  Deleted database.</span><br><span class="line">INFO  Deleted public folder.</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> hexo generate  #重新生成网站文件</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.56 s</span><br><span class="line">INFO  144 files generated in 3.33 s</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> hexo server -p 4001 #在端口4001搭建站点</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
 <p>这个时候，打开<a href="http://localhost:4001/" target="_blank" rel="noopener">http://localhost:4001/</a>，发现刚才的文章已经成功了 。</p>
-<h2 id="3-5-发布网站"><a href="#3-5-发布网站" class="headerlink" title="3.5 发布网站"></a>3.5 发布网站</h2><p>最后一步，发布到Github，在<a href="http://sheldon-pan.github.io/" target="_blank" rel="noopener">http://sheldon-pan.github.io/</a>，可以访问</p>
+<h2 id="3-5-发布网站"><a href="#3-5-发布网站" class="headerlink" title="3.5 发布网站"></a>3.5 发布网站</h2><p>最后一步，发布到Github，在<a href="https://sheldon-pan.github.io/" target="_blank" rel="noopener">https://sheldon-pan.github.io/</a>，可以访问</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo deploy</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line"><span class="meta">#</span>省略</span><br></pre></td></tr></table></figure>
-<p><img src="../images/2-4.jpg" alt="发布"></p>
+<p><img src="在github上搭自己的小窝/2-4.jpg" alt="发布"></p>
 <p>其中会跳出Github登录，直接登录，如果没有问题输入sheldon-pan（换成你的）.github.io/</p>
 <p>就可以看到已经发布了</p>
 <h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><p>以后更新博文的步骤：</p>
@@ -538,7 +538,7 @@
   <p><span>本文标题:</span><a href="/2018/06/02/在github上搭自己的小窝/">在github上搭自己的小窝</a></p>
   <p><span>文章作者:</span><a href="sheldon-pan.github.ic" title="访问 Sheldon 的个人博客">Sheldon</a></p>
   <p><span>发布时间:</span>2018年06月02日 - 22:06</p>
-  <p><span>最后更新:</span>2018年06月03日 - 10:06</p>
+  <p><span>最后更新:</span>2018年06月10日 - 10:06</p>
   <p><span>原始链接:</span><a href="/2018/06/02/在github上搭自己的小窝/" title="在github上搭自己的小窝">http://yoursite.com/2018/06/02/在github上搭自己的小窝/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/06/02/在github上搭自己的小窝/"  aria-label="复制成功！"></i></span>
   </p>

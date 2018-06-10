@@ -87,20 +87,20 @@
 <meta property="og:site_name" content="阿翎の程序猿之路">
 <meta property="og:description" content="Auto-tuning Streamed Applications on the Intel Xeon PhiPublished at the conference of   IPDPS18 (i.e. International Parallel &amp;amp; Distributed Processing Symposium) ,which is a B class conference. Con">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528455678655.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528456774432.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528458494317.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528460543106.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528462051179.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528469429023.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528472946576.png">
-<meta property="og:image" content="http://yoursite.com/2018/06/02/images/1528476059720.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528455678655.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528456774432.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528458494317.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528460543106.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528462051179.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528469429023.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528472946576.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528476059720.png">
 <meta property="og:image" content="c:/Users/SK/Desktop/我的坚果云/1528476137393.png">
-<meta property="og:updated_time" content="2018-06-10T02:37:43.295Z">
+<meta property="og:updated_time" content="2018-06-10T02:50:01.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Auto-tuning Streamed Applications on the Intel Xeon Phi">
 <meta name="twitter:description" content="Auto-tuning Streamed Applications on the Intel Xeon PhiPublished at the conference of   IPDPS18 (i.e. International Parallel &amp;amp; Distributed Processing Symposium) ,which is a B class conference. Con">
-<meta name="twitter:image" content="http://yoursite.com/2018/06/02/images/1528455678655.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/02/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/Auto-tuning%20Streamed%20Applications%20on%20Intel%20Xeon%20Phi/1528455678655.png">
 
 
 
@@ -478,7 +478,7 @@
 <p>• We develop a fully automatic approach for feature selection and training data generation;<br>• We show that our approach delivers constantly better performance over the single-streamed execution across programs and inputs;<br>• Our approach is immediately deployable and does not require any modification to the application source code.</p>
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p><strong>Heterogeneous Streams:</strong> exploiting  the temporal and spatial sharing of the computing resources</p>
 <p><strong>Temporal Sharing.</strong>  one can overlap some of  communication and computation   to exploit pipeline parallelism to improve performance</p>
-<p><img src="..\images\1528455678655.png" alt="1528455678655"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528455678655.png" alt="1528455678655"></p>
 <p>divide an application into independent tasks so that they can run in a pipeline fashion.</p>
 <p><strong>Spatial Sharing.</strong>   partition the computing units into multiple groups to concurrently execute multiple tasks. The key to spatial sharing is to determine the right number of partitions.</p>
 <p><strong>Problem Scope</strong> </p>
@@ -488,12 +488,12 @@
 <p>partitions (partitions should be used to group the cores ) </p>
 <p> tasks(data parallel tasks)</p>
 <p>hStreams</p>
-<p><img src="..\images\1528456774432.png" alt="1528456774432"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528456774432.png" alt="1528456774432"></p>
 <p>Our predictive model determines the #partitions and the #tasks before invoking the hStreams initialization routine, hStreams_app_init().</p>
 <p><strong>Motivating Examples</strong></p>
-<p><img src="..\images\1528458494317.png" alt="1528458494317"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528458494317.png" alt="1528458494317"></p>
 <p>As can be seen from the diagrams, the search space of stream configuration is huge but good configurations are sparse. The performance varies significantly over stream configurations (#partitions, #tasks).</p>
-<p><img src="..\images\1528460543106.png" alt="1528460543106"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528460543106.png" alt="1528460543106"></p>
 <p>As can be seen from the figure, the best stream configuration can vary across inputs for the same benchmark.</p>
 <p><strong>Lesson Learned.</strong></p>
 <p>Choosing the stream configuration has a great impact on the resultant performance and the best configuration must be determined on a per-program and per-dataset basis</p>
@@ -504,7 +504,7 @@
 <p>To determine the best streaming configuration,steps：</p>
 <p>1.We use a set of information or features to capture the characteristics of the program.</p>
 <p>2.We develop a LLVM  compiler pass to extract static code features at compile time, and a low-overhead profiling pass to collect runtime information at execution time. </p>
-<p><img src="..\images\1528462051179.png" alt="1528462051179"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528462051179.png" alt="1528462051179"></p>
 <p>3.At runtime, a predictive model (that is trained offline) takes in the feature values and predicts the optimal stream configuration</p>
 <h2 id="Work"><a href="#Work" class="headerlink" title="Work"></a>Work</h2><h3 id="PREDICTIVE-MODELING"><a href="#PREDICTIVE-MODELING" class="headerlink" title="PREDICTIVE MODELING"></a>PREDICTIVE MODELING</h3><p>1.trained off-line</p>
 <p>2.using code and dynamic runtime features of the program to predicts the best configuration  of  new program .</p>
@@ -534,7 +534,7 @@
 <p>G. Fursin et al., “Mi</p>
 <p>lepost gcc: machine learning based research compiler,”</p>
 <p>Z. Wang et al., “Automatic and portable mapping of data parallel programs to opencl for gpu-based heterogeneous systems,”</p>
-<p><img src="..\images\1528469429023.png" alt="1528469429023"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528469429023.png" alt="1528469429023"></p>
 <p>2) Feature Scaling: </p>
 <p>scaled the value for each of our features between the range of 0 and 1.</p>
 <p>3) Feature Importance: </p>
@@ -546,17 +546,17 @@
 <p><strong>Adapt to Changing Program Phases.</strong></p>
 <p>across kernels</p>
 <p>phase changes within a kernel</p>
-<h2 id="EXPERIMENTAL-SETUP"><a href="#EXPERIMENTAL-SETUP" class="headerlink" title="EXPERIMENTAL SETUP"></a>EXPERIMENTAL SETUP</h2><p><strong>Platform.</strong> Our evaluation platform is an Intel Xeon server with an Intel dual-socket 8-core Xeon CPU @ 2.6 Ghz (16 cores in total) and an Intel Xeon 31SP Phi accelerator (57 cores). The host CPUs and the accelerator are connected through PCIe. The host environment runs Redhat Linux v7.0 (with kernel v.3.10). The coprocessor environment runs a customized uOS (v2.6.38.8). We use Intel’s MPSS (v3.6) to communicate between the host and the coprocessor and Intel’s hStreams library (v3.6).</p>
+<h2 id="Experimental-Setup"><a href="#Experimental-Setup" class="headerlink" title="Experimental Setup"></a>Experimental Setup</h2><p><strong>Platform.</strong> Our evaluation platform is an Intel Xeon server with an Intel dual-socket 8-core Xeon CPU @ 2.6 Ghz (16 cores in total) and an Intel Xeon 31SP Phi accelerator (57 cores). The host CPUs and the accelerator are connected through PCIe. The host environment runs Redhat Linux v7.0 (with kernel v.3.10). The coprocessor environment runs a customized uOS (v2.6.38.8). We use Intel’s MPSS (v3.6) to communicate between the host and the coprocessor and Intel’s hStreams library (v3.6).</p>
 <p><strong>Benchmarks.</strong>  23 programs  25 different datasets, some 10 datasets</p>
-<p><img src="..\images\1528472946576.png" alt="1528472946576"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528472946576.png" alt="1528472946576"></p>
 <p><strong>Competitive Approaches</strong></p>
 <p>Liu et al: In [12], Liu et al. use linear regression models to search for the optimal number of tasks for GPU programs [12].</p>
 <p>Werkhoven et al.: The work presented by Werkhoven et al. models the performance of data transfers between the CPU and the GPU.</p>
 <p><strong>Evaluation Methodology</strong></p>
 <p>AMD and NVIDIA SDK suites, Parboil suite.</p>
-<h2 id="EXPERIMENTAL-RESULTS"><a href="#EXPERIMENTAL-RESULTS" class="headerlink" title="EXPERIMENTAL RESULTS"></a>EXPERIMENTAL RESULTS</h2><p>This demonstrates the portability of our approach across benchmarks. 94.5% 97.8%</p>
+<h2 id="Experimental-Results"><a href="#Experimental-Results" class="headerlink" title="Experimental Results"></a>Experimental Results</h2><p>This demonstrates the portability of our approach across benchmarks. 94.5% 97.8%</p>
 <p>a speedup of over 2× reduce the kernel execution time for these applications</p>
-<p><img src="..\images\1528476059720.png" alt="1528476059720"></p>
+<p><img src="Auto-tuning Streamed Applications on Intel Xeon Phi\1528476059720.png" alt="1528476059720"></p>
 <p><img src="C:\Users\SK\Desktop\我的坚果云\1528476137393.png" alt="1528476137393"></p>
 <p>Speedup Distribution</p>
 <p>the streaming speedups of some applications are  sensitive to the input datasets while that of others are not.</p>
@@ -836,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-tuning-Streamed-Applications-on-the-Intel-Xeon-Phi"><span class="nav-number">1.</span> <span class="nav-text">Auto-tuning Streamed Applications on the Intel Xeon Phi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Main-idea"><span class="nav-number">1.1.</span> <span class="nav-text">Main idea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contribution"><span class="nav-number">1.3.</span> <span class="nav-text">Contribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.4.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Work"><span class="nav-number">1.5.</span> <span class="nav-text">Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PREDICTIVE-MODELING"><span class="nav-number">1.5.1.</span> <span class="nav-text">PREDICTIVE MODELING</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXPERIMENTAL-SETUP"><span class="nav-number">1.6.</span> <span class="nav-text">EXPERIMENTAL SETUP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXPERIMENTAL-RESULTS"><span class="nav-number">1.7.</span> <span class="nav-text">EXPERIMENTAL RESULTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CONCLUSION"><span class="nav-number">1.8.</span> <span class="nav-text">CONCLUSION</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-tuning-Streamed-Applications-on-the-Intel-Xeon-Phi"><span class="nav-number">1.</span> <span class="nav-text">Auto-tuning Streamed Applications on the Intel Xeon Phi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Main-idea"><span class="nav-number">1.1.</span> <span class="nav-text">Main idea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contribution"><span class="nav-number">1.3.</span> <span class="nav-text">Contribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.4.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Work"><span class="nav-number">1.5.</span> <span class="nav-text">Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PREDICTIVE-MODELING"><span class="nav-number">1.5.1.</span> <span class="nav-text">PREDICTIVE MODELING</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Setup"><span class="nav-number">1.6.</span> <span class="nav-text">Experimental Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">1.7.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CONCLUSION"><span class="nav-number">1.8.</span> <span class="nav-text">CONCLUSION</span></a></li></ol></li></ol></div>
             
 
           </div>
