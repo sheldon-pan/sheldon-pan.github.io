@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
+<meta name="description" content="munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.">
 <meta name="keywords" content="HPC,Slurm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Munge的安装配置">
 <meta property="og:url" content="http://yoursite.com/2019/12/18/munge/index.html">
 <meta property="og:site_name" content="阿翎の程序猿之路">
-<meta property="og:description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
+<meta property="og:description" content="munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-17T16:19:02.584Z">
+<meta property="og:updated_time" content="2019-12-17T18:20:40.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Munge的安装配置">
-<meta name="twitter:description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
+<meta name="twitter:description" content="munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.">
 
 
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  960
+                  957
                 </span>
               
 
@@ -428,14 +428,15 @@
       
 
       
-        <h1 id="1-munge"><a href="#1-munge" class="headerlink" title="1 munge"></a>1 munge</h1><p>munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.</p>
+        <p>munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.</p>
+<a id="more"></a>
 <p>简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验证。</p>
 <ul>
 <li>采用munge用户运行进程</li>
 <li>采用命令行方式启动</li>
 <li>支持开机启动</li>
 </ul>
-<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2 安装"></a>2 安装</h2><p>这次安装还是yum直接进行安装,首先删除之前安装的munge-0.5.13</p>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h2><p>这次安装还是yum直接进行安装,首先删除之前安装的munge-0.5.13</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install -y rpm-build rpmdevtools bzip2-devel openssl-devel zlib-devel  openssl openssl-devel"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /opt/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install munge munge-libs munge-devel -y"</span></span><br></pre></td></tr></table></figure>
 <p>手动创建目录,这些目录在munge安装时不会自动创建，分别用于munge的配置、运行、日志等需求。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单节点</span></span><br><span class="line">rm -rf /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">rm -rf  /etc/munge</span><br><span class="line">mkdir -p /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">mkdir /etc/munge</span><br><span class="line"><span class="comment">#发送给计算节点</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf  /etc/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir -p /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir /etc/munge"</span></span><br></pre></td></tr></table></figure>
@@ -449,7 +450,7 @@
 <p>启动munge服务,之后就可以自启动了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先在1节点上启动,然后在后面所有节点启用</span></span><br><span class="line">systemctl <span class="built_in">enable</span> munge</span><br><span class="line">systemctl start munge</span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"systemctl enable munge&amp;&amp;systemctl start munge"</span></span><br></pre></td></tr></table></figure>
 <p>至此munge在1-64号节点上全部启动完毕</p>
-<h2 id="3-检测munge"><a href="#3-检测munge" class="headerlink" title="3 检测munge"></a>3 检测munge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep munge  <span class="comment">#grep 可以通过各个节点查看munge进程验证</span></span><br></pre></td></tr></table></figure>
+<h2 id="2检测munge"><a href="#2检测munge" class="headerlink" title="2检测munge"></a>2检测munge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep munge  <span class="comment">#grep 可以通过各个节点查看munge进程验证</span></span><br></pre></td></tr></table></figure>
 <p>在slurmadmin用户下验证本机：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ munge -n | unmunge</span><br><span class="line">STATUS:           Success (0)</span><br><span class="line">ENCODE_HOST:      localhost (127.0.0.1)</span><br><span class="line">ENCODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">DECODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">TTL:              300</span><br><span class="line">CIPHER:           aes128 (4)</span><br><span class="line">MAC:              sha1 (3)</span><br><span class="line">ZIP:              none (0)</span><br><span class="line">UID:              slurmadmin(1017)</span><br><span class="line">GID:              slurm (1017)</span><br><span class="line">LENGTH:           0</span><br><span class="line"><span class="comment">#也可使用 remunge进行解码的测试benchamrk</span></span><br><span class="line">$ remunge</span><br><span class="line"> munge -n 本地查看凭据</span><br><span class="line">munge -n | unmunge 本地解码</span><br><span class="line"> munge -n | ssh 192.168.10.2 unmunge <span class="comment"># Master Node进行测试 远程解码</span></span><br><span class="line"> remunge</span><br></pre></td></tr></table></figure>
 <p>munge自动认证的是相同的用户，即UID和GID相同，并不是按照用户名称来匹配，所以在创建slurm用户时必须指定相同的UID和GID.</p>
@@ -487,7 +488,7 @@
   <p><span>本文标题:</span><a href="/2019/12/18/munge/">Munge的安装配置</a></p>
   <p><span>文章作者:</span><a href="sheldon-pan.github.ic" title="访问 Sheldon 的个人博客">Sheldon</a></p>
   <p><span>发布时间:</span>2019年12月18日 - 00:12</p>
-  <p><span>最后更新:</span>2019年12月18日 - 00:12</p>
+  <p><span>最后更新:</span>2019年12月18日 - 02:12</p>
   <p><span>原始链接:</span><a href="/2019/12/18/munge/" title="Munge的安装配置">http://yoursite.com/2019/12/18/munge/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2019/12/18/munge/"  aria-label="复制成功！"></i></span>
   </p>
@@ -722,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-munge"><span class="nav-number">1.</span> <span class="nav-text">1 munge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装"><span class="nav-number">1.1.</span> <span class="nav-text">2 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-检测munge"><span class="nav-number">1.2.</span> <span class="nav-text">3 检测munge</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装"><span class="nav-number">1.</span> <span class="nav-text">1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2检测munge"><span class="nav-number">2.</span> <span class="nav-text">2检测munge</span></a></li></ol></div>
             
 
           </div>

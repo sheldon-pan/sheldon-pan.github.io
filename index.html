@@ -421,27 +421,14 @@
 
       
         
-          
-            <h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><p>本节介绍 Slurm 实验环境的安装，包括一个控制节点和64个计算节点（控制节点同时作为计算节点）4个GPU节点， 使用pdsh和pssh来简化配置工作.</p>
-<h2 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0 准备工作"></a>0 准备工作</h2><h3 id="0-1关闭-Firewall"><a href="#0-1关闭-Firewall" class="headerlink" title="0.1关闭 Firewall"></a>0.1关闭 Firewall</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
-<h3 id="0-2-同步时间"><a href="#0-2-同步时间" class="headerlink" title="0.2 同步时间"></a>0.2 同步时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_all <span class="string">"rdate -s 192.168.10.56</span></span><br><span class="line"><span class="string">#将192.168.10.56部署为NTP服务器之后，通过定时执行同步任务来保证所有节点时间一致：</span></span><br><span class="line"><span class="string">pdsh -w COMPUTE-1-[1-8],GPU-1-[8,9,12,16] date</span></span><br><span class="line"><span class="string">#将该命令写入定时任务：使用 -x排除主机 COMPUTE-1-47</span></span><br><span class="line"><span class="string">crontab -e</span></span><br><span class="line"><span class="string">*/5 * * * * pdsh -w COMPUTE-1-[1-8],GPU-1-[8,9,12,16] date</span></span><br></pre></td></tr></table></figure>
-<p>###0.3关闭SELinux</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vi /etc/sysconfig/selinux</span></span><br><span class="line">        SELINUX=disabled</span><br><span class="line"><span class="meta">#</span><span class="bash"> reboot</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> getenforce(查看SELinux状态)</span></span><br></pre></td></tr></table></figure>
-<h3 id="0-4创建slurm用户-可选-本文使用了root账户-这里可以不看"><a href="#0-4创建slurm用户-可选-本文使用了root账户-这里可以不看" class="headerlink" title="0.4创建slurm用户(可选,本文使用了root账户,这里可以不看)"></a>0.4创建slurm用户(可选,本文使用了root账户,这里可以不看)</h3><p>先创建slurm用户来进行操作。(#表示需要sudo权限或root用户的操作) 刚创建的云主机只有root用户，一般用root用户操作有许多不便之处，需要先创建slurm用户来进行操作。(#表示需要sudo权限或root用户的操作).或者像本文一样使用root账户.这里还必须保证slurm 的uid完全一致,我们这里使用了root就不管了,如果添加账户的话,可以采用 9527的uid和gid</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -u 9527  slurm</span><br></pre></td></tr></table></figure>
-<p>如果已有用户冲突可以采取下列方式</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">修改foo用户的uid</span></span><br><span class="line">usermod -u 9527 slurm</span><br><span class="line"><span class="meta">#</span><span class="bash">修改foo组的gid</span></span><br><span class="line">groupmod -g 9527 slurm</span><br></pre></td></tr></table></figure>
-<p>最好不要另开账户了,如果开的话,参考用户管理一文进行提权.</p>
-<h3 id="0-4-安装依赖"><a href="#0-4-安装依赖" class="headerlink" title="0.4 安装依赖"></a>0.4 安装依赖</h3><p>在所有的节点上安装slurm依赖，slurm在创建安装包时需要 perl-ExtUtils-MakeMaker rpm-build</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#遇到mysqlclient accounting_storage_mysql.so错误</span></span><br><span class="line"><span class="comment">#主要是sql的devel没有安装</span></span><br><span class="line">yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad   perl-ExtUtils-MakeMaker   perl-Switch rpm-build -y  </span><br><span class="line"><span class="comment">#本文使用mariadb数据库记录slurm的信息,并且需要安装sql支持</span></span><br><span class="line">yum install mariadb-server mariadb-devel -y</span><br></pre></td></tr></table></figure>
-<h2 id="1-下载并制作rpm包"><a href="#1-下载并制作rpm包" class="headerlink" title="1 下载并制作rpm包"></a>1 下载并制作rpm包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget  https://download.schedmd.com/slurm/slurm-19.05.3.tar.bz2</span><br><span class="line">rpmbuild -ta --clean slurm-19.05.3.tar.bz2</span><br><span class="line"><span class="comment">#会在 /root/rpmbuild/RPMS/x86_64生成相应的src包和二进制包</span></span><br></pre></td></tr></table></figure>
-<h2 id="2安装配置slurm"><a href="#2安装配置slurm" class="headerlink" title="2安装配置slurm"></a>2安装配置slurm</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root/rpmbuild/RPMS/x86_64</span><br><span class="line">yum --nogpgcheck localinstall slurm-* -y</span><br><span class="line"><span class="built_in">cd</span> /etc/slurm/</span><br><span class="line"><span class="comment">#复制 slurm.conf.example 文件成 slurm.conf，然后编辑 本文所使用的slurm.conf和cgroup.conf见后面链接 </span></span><br><span class="line">vim /etc/slurm/slurm.conf </span><br><span class="line">vim /etc/slurm/cgroup.conf </span><br><span class="line"></span><br><span class="line"><span class="comment"># slurm 多节点安装依赖</span></span><br><span class="line">pscp.pssh -i -h cpu2-64_gpu4 <span class="string">"yum install openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad   perl-ExtUtils-MakeMaker   perl-Switch rpm-build -y  "</span></span><br><span class="line"><span class="comment"># slurm 多节点安装数据库依赖</span></span><br><span class="line">pscp.pssh -i -h cpu2-64_gpu4 <span class="string">"yum install mariadb-server mariadb-devel -y"</span></span><br><span class="line"><span class="comment"># 多节点复制slurm安装包</span></span><br><span class="line">pscp.pssh -h cpu2-64_gpu4 -r ~/rpmbuild/RPMS/slurm19.05/ /home/xd</span><br><span class="line"><span class="comment"># 多节点执行slurm安装</span></span><br><span class="line">pssh -i -h cpu2-64_gpu4 <span class="string">"cd /home/xd/slurm19.05 &amp;&amp; yum --nogpgcheck localinstall slurm-* -y "</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##多节点传输cgroup.conf和slurm.conf</span></span><br><span class="line">pscp -h ~/pssh/cpu2-64_gpu4 /etc/slurm/*conf /etc/slurm</span><br><span class="line"><span class="comment">#之后进行多节点的测试</span></span><br><span class="line">pssh -i -h ~/pssh/cpu2-64_gpu4  <span class="string">"systemctl start slurmd&amp;&amp;systemctl enable slurmd"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主控节点</span></span><br><span class="line">systemctl start slurmctld slurmd</span><br><span class="line">systemctl <span class="built_in">enable</span> slurmctld slurmd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算节点</span></span><br><span class="line">systemctl start slurmd</span><br><span class="line">systemctl <span class="built_in">enable</span> slurmd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#多节点</span></span><br><span class="line">pscp -h ~/pssh/cpu2-64_gpu4 /etc/slurm/*conf /etc/slurm</span><br><span class="line"><span class="comment">#之后进行多节点的测试</span></span><br><span class="line">pssh -i -h ~/pssh/cpu2-64_gpu4 <span class="string">"systemctl start slurmd&amp;&amp;systemctl enable slurmd"</span></span><br></pre></td></tr></table></figure>
-<p>到这里所有的slurm已经搭建完毕,花费时间5天.简直天坑</p>
-<p>在任意节点执行 sinfo 命令，你将看到类似输出，则证明服务工作正常</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST</span><br><span class="line">Debug            up   infinite      4   idle COMPUTE-1-[1-4]</span><br><span class="line">COMPUTE[5-64]    up   infinite     59   idle COMPUTE-1-[5-46,48-64]</span><br><span class="line">GPU*             up   infinite      4   idle GPU-1-[8-9,12,16]</span><br></pre></td></tr></table></figure>
-<h2 id="3-配置文件"><a href="#3-配置文件" class="headerlink" title="3 配置文件"></a>3 配置文件</h2><p>本文所使用的<a href="https://github.com/sheldon-pan/slurm/blob/master/cgroup.conf" target="_blank" rel="noopener">slurm.conf</a>和<a href="https://github.com/sheldon-pan/slurm/blob/master/cgroup.conf" target="_blank" rel="noopener">cgroup.conf</a></p>
-
-          
+          <p>本节介绍 Slurm 实验环境的安装，包括一个控制节点和64个计算节点（控制节点同时作为计算节点）4个GPU节点， 使用pdsh和pssh来简化配置工作.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/18/slurm搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -579,7 +566,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  960
+                  957
                 </span>
               
 
@@ -617,36 +604,14 @@
 
       
         
-          
-            <h1 id="1-munge"><a href="#1-munge" class="headerlink" title="1 munge"></a>1 munge</h1><p>munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.</p>
-<p>简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验证。</p>
-<ul>
-<li>采用munge用户运行进程</li>
-<li>采用命令行方式启动</li>
-<li>支持开机启动</li>
-</ul>
-<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2 安装"></a>2 安装</h2><p>这次安装还是yum直接进行安装,首先删除之前安装的munge-0.5.13</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install -y rpm-build rpmdevtools bzip2-devel openssl-devel zlib-devel  openssl openssl-devel"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /opt/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install munge munge-libs munge-devel -y"</span></span><br></pre></td></tr></table></figure>
-<p>手动创建目录,这些目录在munge安装时不会自动创建，分别用于munge的配置、运行、日志等需求。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单节点</span></span><br><span class="line">rm -rf /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">rm -rf  /etc/munge</span><br><span class="line">mkdir -p /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">mkdir /etc/munge</span><br><span class="line"><span class="comment">#发送给计算节点</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf  /etc/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir -p /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir /etc/munge"</span></span><br></pre></td></tr></table></figure>
-<p>如果我们在root下执行munge进程,那么</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> chown root:root -R /etc/munge</span><br><span class="line">chown root:root  -R  /var/run/munge</span><br><span class="line">chown root:root  -R  /var/lib/munge</span><br><span class="line">chown root:root -R  /var/<span class="built_in">log</span>/munge</span><br><span class="line">chown root:root  -R  /etc/munge/munge.key</span><br><span class="line">chmod 0700 -R /etc/munge/ /var/<span class="built_in">log</span>/munge/</span><br><span class="line">chmod 0711 -R /var/lib/munge/</span><br></pre></td></tr></table></figure>
-<p>但是后来发现其实这些都是没有必要的,如果在root下运行,并且在root下创建,那么所有者都是root,不需要做什么改变</p>
-<p>之后COMPUTE-1-1作为master节点生成key文件,这里munge.key可以手动创建，但是必须保证其内容在32个字节以上，且文件权限为400方可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"helloeveryone,I'ammungekeyonkvmcluster."</span> &gt;/etc/munge/munge.key &amp;&amp;  chmod 400 /etc/munge/munge.key</span><br><span class="line">pscp.pssh  -h root_cpu2-64  /etc/munge/munge.key  /etc/munge/</span><br></pre></td></tr></table></figure>
-<p>之后munge服务一直无法生成,发现了很多网站上没有提到的一个问题,就是需要修改munge服务的生成配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/munge.service</span><br><span class="line"><span class="comment">#将user和group都改成root</span></span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line"><span class="comment">#之后需要将这个配置文件发给其他所有节点</span></span><br><span class="line">pscp.pssh  -h root_cpu2-64 /usr/lib/systemd/system/munge.service /usr/lib/systemd/system/</span><br></pre></td></tr></table></figure>
-<p>启动munge服务,之后就可以自启动了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先在1节点上启动,然后在后面所有节点启用</span></span><br><span class="line">systemctl <span class="built_in">enable</span> munge</span><br><span class="line">systemctl start munge</span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"systemctl enable munge&amp;&amp;systemctl start munge"</span></span><br></pre></td></tr></table></figure>
-<p>至此munge在1-64号节点上全部启动完毕</p>
-<h2 id="3-检测munge"><a href="#3-检测munge" class="headerlink" title="3 检测munge"></a>3 检测munge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep munge  <span class="comment">#grep 可以通过各个节点查看munge进程验证</span></span><br></pre></td></tr></table></figure>
-<p>在slurmadmin用户下验证本机：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ munge -n | unmunge</span><br><span class="line">STATUS:           Success (0)</span><br><span class="line">ENCODE_HOST:      localhost (127.0.0.1)</span><br><span class="line">ENCODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">DECODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">TTL:              300</span><br><span class="line">CIPHER:           aes128 (4)</span><br><span class="line">MAC:              sha1 (3)</span><br><span class="line">ZIP:              none (0)</span><br><span class="line">UID:              slurmadmin(1017)</span><br><span class="line">GID:              slurm (1017)</span><br><span class="line">LENGTH:           0</span><br><span class="line"><span class="comment">#也可使用 remunge进行解码的测试benchamrk</span></span><br><span class="line">$ remunge</span><br><span class="line"> munge -n 本地查看凭据</span><br><span class="line">munge -n | unmunge 本地解码</span><br><span class="line"> munge -n | ssh 192.168.10.2 unmunge <span class="comment"># Master Node进行测试 远程解码</span></span><br><span class="line"> remunge</span><br></pre></td></tr></table></figure>
-<p>munge自动认证的是相同的用户，即UID和GID相同，并不是按照用户名称来匹配，所以在创建slurm用户时必须指定相同的UID和GID.</p>
-<p>如果遇到munge认证失败的问题 Invalid credential</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_cpu2-64 <span class="string">"systemctl restart  munge"</span> </span><br><span class="line"><span class="comment">#所有节点 restart  munge即可</span></span><br></pre></td></tr></table></figure>
-
-          
+          <p>munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/18/munge/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -822,7 +787,7 @@
 
       
         
-          <h1 id="1-缘由"><a href="#1-缘由" class="headerlink" title="1 缘由"></a>1 缘由</h1><p>想起来在github上搭自己的小窝，源自于一次课堂作业。</p>
+          <h2 id="1-缘由"><a href="#1-缘由" class="headerlink" title="1 缘由"></a>1 缘由</h2><p>想起来在github上搭自己的小窝，源自于一次课堂作业。用的sublime text3来写的代码，因为用了自动模板工具sublime Tmpl来新建的python文件，最前端的注释里有link，想了想，开始上学这半年以来，自己的笔记也是写了不少，以前的话都是用Wiz在记，有点乱，平常都是全局搜索来找，也很久没有整理过了。因此想借着这个机会把笔记梳理一遍，POST到网上来，也是对自己学习的一个整理和回顾。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/02/在github上搭自己的小窝/#more" rel="contents">
@@ -1005,7 +970,7 @@
 
       
         
-          <h1 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h1><p>由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
+          <h2 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h2><p>由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/02/ubuntu环境配置/#more" rel="contents">

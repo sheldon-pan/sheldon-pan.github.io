@@ -88,7 +88,7 @@
 <meta property="og:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/12/16/ZVPx2we4piD9zN8.png">
-<meta property="og:updated_time" content="2019-12-17T16:16:13.827Z">
+<meta property="og:updated_time" content="2019-12-17T18:19:50.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu环境配置">
 <meta name="twitter:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。">
@@ -430,12 +430,12 @@
       
 
       
-        <h1 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h1><p>由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
+        <h2 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h2><p>由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
 <a id="more"></a>
-<h1 id="2-过程"><a href="#2-过程" class="headerlink" title="2 过程"></a>2 过程</h1><h2 id="2-1-环境"><a href="#2-1-环境" class="headerlink" title="2.1 环境"></a>2.1 环境</h2><p>硬件：联想T430s，i5-3320M(2.6GHz)双核四线程处理器，12GB内存，集成显卡，SSD1：Intel 520s 180GB（SATA3），SSD2：建兴 LMT-32GB（MSATA）；</p>
+<h2 id="2-过程"><a href="#2-过程" class="headerlink" title="2 过程"></a>2 过程</h2><h3 id="2-1-环境"><a href="#2-1-环境" class="headerlink" title="2.1 环境"></a>2.1 环境</h3><p>硬件：联想T430s，i5-3320M(2.6GHz)双核四线程处理器，12GB内存，集成显卡，SSD1：Intel 520s 180GB（SATA3），SSD2：建兴 LMT-32GB（MSATA）；</p>
 <p>软件： 主系统Win7（SSD1），副系统Ubuntu14.04（SSD2），两个系统双硬盘，启动信息写在各自硬盘上，在启动的时候不关联，选择不同的硬盘进入不同的系统，最大程度上避免重装系统造成的影响；</p>
 <p>工具：16GB的U盘，<a href="http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso" target="_blank" rel="noopener">16.04的ISO</a>，<a href="http://rufus.akeo.ie/downloads/rufus-2.18.exe" target="_blank" rel="noopener">Rufus2.18</a>。</p>
-<h2 id="2-2-分区"><a href="#2-2-分区" class="headerlink" title="2.2 分区"></a>2.2 分区</h2><p>可以在WIn下分区，也可以在Ubuntu安装的时候再进行，这次我们采用的是安装时候进行。一般意义需要分出4个分区，分别用于Ubuntu系统分区/（安装系统和软件）、交换分区Swap （即虚拟内存分区，内存大可以不分配）、引导分区/boot （即逻辑引导分区，本次不需要，boot分区主要为多系统引导，LVM、Raid，加密以及系统崩溃厚的抢救恢复，本次安装不进行分区划分）、文档分区/home（个人文件分区，类似于Win下“我的文档”，本次不区分）。</p>
+<h3 id="2-2-分区"><a href="#2-2-分区" class="headerlink" title="2.2 分区"></a>2.2 分区</h3><p>可以在WIn下分区，也可以在Ubuntu安装的时候再进行，这次我们采用的是安装时候进行。一般意义需要分出4个分区，分别用于Ubuntu系统分区/（安装系统和软件）、交换分区Swap （即虚拟内存分区，内存大可以不分配）、引导分区/boot （即逻辑引导分区，本次不需要，boot分区主要为多系统引导，LVM、Raid，加密以及系统崩溃厚的抢救恢复，本次安装不进行分区划分）、文档分区/home（个人文件分区，类似于Win下“我的文档”，本次不区分）。</p>
 <p>小硬盘，虚拟机或者是初学者的话，建议就分出系统分区即可，进阶的时候或者在服务器上可以把home、 /boot、swap和/Var（主要放置系统执行过程中经常变化的文件，例如缓存（cache）或者是随时更改的登录文件log file。  如果计算机主要是提供网页服务，或者是数据库，那/var会大量增加，最好能够把/var额外分割出来）。</p>
 <h3 id="2-3-制作启动U盘"><a href="#2-3-制作启动U盘" class="headerlink" title="2.3 制作启动U盘"></a>2.3 制作启动U盘</h3><p>在Win下利用Rufus选中U盘盘符之后，勾选“创建一个启动盘使用”选项，并点击后面的光驱小图标选择ISO 镜像文件，没特殊需求的话，取消检查设备坏块、勾选快速格式化，点击开始进行启动盘的制作（下图）。</p>
 <p><img src="https://i.loli.net/2019/12/16/ZVPx2we4piD9zN8.png" alt=""></p>
@@ -516,7 +516,7 @@
 <p> <code>source ~/.zshrc</code></p>
 <p>这样就可以在zsh下使用mpirun 和mpicc mpicxx了。</p>
 <p>MPI的具体测试和使用，也会再开一篇。</p>
-<h1 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3 结束语"></a>3 结束语</h1><p>磕磕绊绊算是把第一篇博客写完了的，最近考试完计划是把MPICH、sublime text、zsh、win10下的WSL、git.io博客的搭建还有天河超算节点的笔记都再写成博客，下一篇先写博客搭建和美化好了。</p>
+<h3 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3 结束语"></a>3 结束语</h3><p>磕磕绊绊算是把第一篇博客写完了的，最近考试完计划是把MPICH、sublime text、zsh、win10下的WSL、git.io博客的搭建还有天河超算节点的笔记都再写成博客，下一篇先写博客搭建和美化好了。</p>
 
       
     </div>
@@ -549,7 +549,7 @@
   <p><span>本文标题:</span><a href="/2018/06/02/ubuntu环境配置/">Ubuntu环境配置</a></p>
   <p><span>文章作者:</span><a href="sheldon-pan.github.ic" title="访问 Sheldon 的个人博客">Sheldon</a></p>
   <p><span>发布时间:</span>2018年06月02日 - 09:06</p>
-  <p><span>最后更新:</span>2019年12月18日 - 00:12</p>
+  <p><span>最后更新:</span>2019年12月18日 - 02:12</p>
   <p><span>原始链接:</span><a href="/2018/06/02/ubuntu环境配置/" title="Ubuntu环境配置">http://yoursite.com/2018/06/02/ubuntu环境配置/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/06/02/ubuntu环境配置/"  aria-label="复制成功！"></i></span>
   </p>
@@ -780,7 +780,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-原由"><span class="nav-number">1.</span> <span class="nav-text">1 原由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-过程"><span class="nav-number">2.</span> <span class="nav-text">2 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-环境"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-分区"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-制作启动U盘"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.3 制作启动U盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-安装"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.4 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-配置环境"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.5 配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-更换更新源"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">2.5.1 更换更新源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-删除无用软件、更新"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">2.5.2 删除无用软件、更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-软件安装"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">2.5.3 软件安装</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-结束语"><span class="nav-number">3.</span> <span class="nav-text">3 结束语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-原由"><span class="nav-number">1.</span> <span class="nav-text">1 原由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-过程"><span class="nav-number">2.</span> <span class="nav-text">2 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-环境"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-分区"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-制作启动U盘"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 制作启动U盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-安装"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-配置环境"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-更换更新源"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1 更换更新源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-删除无用软件、更新"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2 删除无用软件、更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-软件安装"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3 软件安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-结束语"><span class="nav-number">2.6.</span> <span class="nav-text">3 结束语</span></a></li></ol></li></ol></div>
             
 
           </div>
