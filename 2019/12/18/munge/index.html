@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, sheldon" />
+  <meta name="keywords" content="HPC,Slurm," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Stay hungry, Stay foolish">
-<meta name="keywords" content="计科">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阿翎の程序猿之路">
-<meta property="og:url" content="http://yoursite.com/tags/github/index.html">
+<meta name="description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
+<meta name="keywords" content="HPC,Slurm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Munge的安装配置">
+<meta property="og:url" content="http://yoursite.com/2019/12/18/munge/index.html">
 <meta property="og:site_name" content="阿翎の程序猿之路">
-<meta property="og:description" content="Stay hungry, Stay foolish">
+<meta property="og:description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-17T16:19:02.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿翎の程序猿之路">
-<meta name="twitter:description" content="Stay hungry, Stay foolish">
+<meta name="twitter:title" content="Munge的安装配置">
+<meta name="twitter:description" content="1 mungemunge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证. 简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/github/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/munge/"/>
 
 
 
 
 
-  <title>标签: github | 阿翎の程序猿之路</title>
+  <title>Munge的安装配置 | 阿翎の程序猿之路</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/sheldon-pan"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
@@ -283,54 +284,306 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>github<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/munge/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sheldon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿翎の程序猿之路">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/06/02/在github上搭自己的小窝/" itemprop="url">
-              
-                <span itemprop="name">在github上搭自己的小窝</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Munge的安装配置</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-02T22:00:58+08:00"
-              content="2018-06-02" >
-          06-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T00:05:24+08:00">
+                2019-12-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HPC/" itemprop="url" rel="index">
+                    <span itemprop="name">HPC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/18/munge/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/12/18/munge/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  960
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-munge"><a href="#1-munge" class="headerlink" title="1 munge"></a>1 munge</h1><p>munge是认证服务，用于生成和验证证书。应用于大规模的HPC集群中。它允许进程在【具有公用的用户和组的】主机组中，对另外一个【本地或者远程的】进程的UID和GID进行身份验证。这些主机构成由共享密钥定义的安全领域。在此领域中的客户端能够在不使用root权限，不保留端口，或其他特定平台下进行创建凭据和验证.</p>
+<p>简而言之，在集群中，munge能够实现本地或者远程主机进程的GID和UID验证。</p>
+<ul>
+<li>采用munge用户运行进程</li>
+<li>采用命令行方式启动</li>
+<li>支持开机启动</li>
+</ul>
+<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2 安装"></a>2 安装</h2><p>这次安装还是yum直接进行安装,首先删除之前安装的munge-0.5.13</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install -y rpm-build rpmdevtools bzip2-devel openssl-devel zlib-devel  openssl openssl-devel"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /opt/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"yum install munge munge-libs munge-devel -y"</span></span><br></pre></td></tr></table></figure>
+<p>手动创建目录,这些目录在munge安装时不会自动创建，分别用于munge的配置、运行、日志等需求。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单节点</span></span><br><span class="line">rm -rf /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">rm -rf  /etc/munge</span><br><span class="line">mkdir -p /var/&#123;<span class="built_in">log</span>,run,lib&#125;/munge</span><br><span class="line">mkdir /etc/munge</span><br><span class="line"><span class="comment">#发送给计算节点</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"rm -rf  /etc/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir -p /var/&#123;log,run,lib&#125;/munge"</span></span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"mkdir /etc/munge"</span></span><br></pre></td></tr></table></figure>
+<p>如果我们在root下执行munge进程,那么</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> chown root:root -R /etc/munge</span><br><span class="line">chown root:root  -R  /var/run/munge</span><br><span class="line">chown root:root  -R  /var/lib/munge</span><br><span class="line">chown root:root -R  /var/<span class="built_in">log</span>/munge</span><br><span class="line">chown root:root  -R  /etc/munge/munge.key</span><br><span class="line">chmod 0700 -R /etc/munge/ /var/<span class="built_in">log</span>/munge/</span><br><span class="line">chmod 0711 -R /var/lib/munge/</span><br></pre></td></tr></table></figure>
+<p>但是后来发现其实这些都是没有必要的,如果在root下运行,并且在root下创建,那么所有者都是root,不需要做什么改变</p>
+<p>之后COMPUTE-1-1作为master节点生成key文件,这里munge.key可以手动创建，但是必须保证其内容在32个字节以上，且文件权限为400方可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"helloeveryone,I'ammungekeyonkvmcluster."</span> &gt;/etc/munge/munge.key &amp;&amp;  chmod 400 /etc/munge/munge.key</span><br><span class="line">pscp.pssh  -h root_cpu2-64  /etc/munge/munge.key  /etc/munge/</span><br></pre></td></tr></table></figure>
+<p>之后munge服务一直无法生成,发现了很多网站上没有提到的一个问题,就是需要修改munge服务的生成配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/munge.service</span><br><span class="line"><span class="comment">#将user和group都改成root</span></span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line"><span class="comment">#之后需要将这个配置文件发给其他所有节点</span></span><br><span class="line">pscp.pssh  -h root_cpu2-64 /usr/lib/systemd/system/munge.service /usr/lib/systemd/system/</span><br></pre></td></tr></table></figure>
+<p>启动munge服务,之后就可以自启动了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先在1节点上启动,然后在后面所有节点启用</span></span><br><span class="line">systemctl <span class="built_in">enable</span> munge</span><br><span class="line">systemctl start munge</span><br><span class="line">pssh -i -h root_cpu2-64 <span class="string">"systemctl enable munge&amp;&amp;systemctl start munge"</span></span><br></pre></td></tr></table></figure>
+<p>至此munge在1-64号节点上全部启动完毕</p>
+<h2 id="3-检测munge"><a href="#3-检测munge" class="headerlink" title="3 检测munge"></a>3 检测munge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep munge  <span class="comment">#grep 可以通过各个节点查看munge进程验证</span></span><br></pre></td></tr></table></figure>
+<p>在slurmadmin用户下验证本机：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ munge -n | unmunge</span><br><span class="line">STATUS:           Success (0)</span><br><span class="line">ENCODE_HOST:      localhost (127.0.0.1)</span><br><span class="line">ENCODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">DECODE_TIME:      2015-09-14 16:39:58 +0800 (1442219998)</span><br><span class="line">TTL:              300</span><br><span class="line">CIPHER:           aes128 (4)</span><br><span class="line">MAC:              sha1 (3)</span><br><span class="line">ZIP:              none (0)</span><br><span class="line">UID:              slurmadmin(1017)</span><br><span class="line">GID:              slurm (1017)</span><br><span class="line">LENGTH:           0</span><br><span class="line"><span class="comment">#也可使用 remunge进行解码的测试benchamrk</span></span><br><span class="line">$ remunge</span><br><span class="line"> munge -n 本地查看凭据</span><br><span class="line">munge -n | unmunge 本地解码</span><br><span class="line"> munge -n | ssh 192.168.10.2 unmunge <span class="comment"># Master Node进行测试 远程解码</span></span><br><span class="line"> remunge</span><br></pre></td></tr></table></figure>
+<p>munge自动认证的是相同的用户，即UID和GID相同，并不是按照用户名称来匹配，所以在创建slurm用户时必须指定相同的UID和GID.</p>
+<p>如果遇到munge认证失败的问题 Invalid credential</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pssh -i -h root_cpu2-64 <span class="string">"systemctl restart  munge"</span> </span><br><span class="line"><span class="comment">#所有节点 restart  munge即可</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+
+  
+  <div>
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+  </div>
+  
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/12/18/munge/">Munge的安装配置</a></p>
+  <p><span>文章作者:</span><a href="sheldon-pan.github.ic" title="访问 Sheldon 的个人博客">Sheldon</a></p>
+  <p><span>发布时间:</span>2019年12月18日 - 00:12</p>
+  <p><span>最后更新:</span>2019年12月18日 - 00:12</p>
+  <p><span>原始链接:</span><a href="/2019/12/18/munge/" title="Munge的安装配置">http://yoursite.com/2019/12/18/munge/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2019/12/18/munge/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+
+      
+</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HPC/" rel="tag"><i class="fa fa-tag"></i> HPC</a>
+          
+            <a href="/tags/Slurm/" rel="tag"><i class="fa fa-tag"></i> Slurm</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/02/在github上搭自己的小窝/" rel="next" title="在github上搭自己的小窝">
+                <i class="fa fa-chevron-left"></i> 在github上搭自己的小窝
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/18/slurm搭建/" rel="prev" title="SLURM搭建">
+                SLURM搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +591,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -358,8 +622,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -439,6 +712,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-munge"><span class="nav-number">1.</span> <span class="nav-text">1 munge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装"><span class="nav-number">1.1.</span> <span class="nav-text">2 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-检测munge"><span class="nav-number">1.2.</span> <span class="nav-text">3 检测munge</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -590,6 +879,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

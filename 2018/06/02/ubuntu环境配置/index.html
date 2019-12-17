@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Ubuntu," />
+  <meta name="keywords" content="Linux,Ubuntu," />
 
 
 
@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境">
-<meta name="keywords" content="Ubuntu">
+<meta name="description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。">
+<meta name="keywords" content="Linux,Ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu环境配置">
 <meta property="og:url" content="http://yoursite.com/2018/06/02/ubuntu环境配置/index.html">
 <meta property="og:site_name" content="阿翎の程序猿之路">
-<meta property="og:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境">
+<meta property="og:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/12/16/ZVPx2we4piD9zN8.png">
-<meta property="og:updated_time" content="2019-12-16T15:43:28.571Z">
+<meta property="og:updated_time" content="2019-12-17T16:16:13.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu环境配置">
-<meta name="twitter:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境">
+<meta name="twitter:description" content="1 原由由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。">
 <meta name="twitter:image" content="https://i.loli.net/2019/12/16/ZVPx2we4piD9zN8.png">
 
 
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/作业/" itemprop="url" rel="index">
-                    <span itemprop="name">作业</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -430,9 +430,8 @@
       
 
       
-        <h1 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h1><p>由于高级并行程序设计这门课程需要用到Linux环境</p>
+        <h1 id="1-原由"><a href="#1-原由" class="headerlink" title="1 原由"></a>1 原由</h1><p>由于高级并行程序设计这门课程需要用到Linux环境，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
 <a id="more"></a>
-<p>，手头上的Ubuntu版本比较老了14.04，在不用sniper来测功耗之后，也没有停留在14的必要了。所以趁着这次机会升级下系统，并且把编程环境重新配置一下。</p>
 <h1 id="2-过程"><a href="#2-过程" class="headerlink" title="2 过程"></a>2 过程</h1><h2 id="2-1-环境"><a href="#2-1-环境" class="headerlink" title="2.1 环境"></a>2.1 环境</h2><p>硬件：联想T430s，i5-3320M(2.6GHz)双核四线程处理器，12GB内存，集成显卡，SSD1：Intel 520s 180GB（SATA3），SSD2：建兴 LMT-32GB（MSATA）；</p>
 <p>软件： 主系统Win7（SSD1），副系统Ubuntu14.04（SSD2），两个系统双硬盘，启动信息写在各自硬盘上，在启动的时候不关联，选择不同的硬盘进入不同的系统，最大程度上避免重装系统造成的影响；</p>
 <p>工具：16GB的U盘，<a href="http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso" target="_blank" rel="noopener">16.04的ISO</a>，<a href="http://rufus.akeo.ie/downloads/rufus-2.18.exe" target="_blank" rel="noopener">Rufus2.18</a>。</p>
@@ -444,10 +443,10 @@
 <p>在“启动引导器的设备”下拉菜单中，本次不通过boot引导，选择硬盘根目录，即/dev/sdb。连续下一步，选择键盘、设置用户名密码，等待全部安装完毕。</p>
 <h3 id="2-5-配置环境"><a href="#2-5-配置环境" class="headerlink" title="2.5 配置环境"></a>2.5 配置环境</h3><h4 id="2-5-1-更换更新源"><a href="#2-5-1-更换更新源" class="headerlink" title="2.5.1 更换更新源"></a>2.5.1 更换更新源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 <p>在Vim中dd100，删除掉原先的更新源，i进入Insert模式，将代码粘贴进去，Esc退出Insert模式，：进入命令行，输入wq 回车 写入并退出。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 预发布软件源，不建议启用</span><br><span class="line"><span class="meta">#</span> deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span><span class="bash"> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span><span class="bash"> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span><span class="bash"> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line"><span class="meta">#</span><span class="bash"> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 预发布软件源，不建议启用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
 <p>如果装完之后发现Ubuntu时差8小时</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo timedatectl set-local-rtc 1</span><br></pre></td></tr></table></figure>
-<h4 id="2-5-2-删除无用软件、更新"><a href="#2-5-2-删除无用软件、更新" class="headerlink" title="2.5.2 删除无用软件、更新"></a>2.5.2 删除无用软件、更新</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>libreoffice 不好用杀之，后续安装wps凑合用</span><br><span class="line">sudo apt-get remove libreoffice-common </span><br><span class="line"><span class="meta"> #</span>Amazon链接好烦人，杀之</span><br><span class="line">sudo apt-get remove unity-webapps-common  </span><br><span class="line"><span class="meta">#</span>还有一堆 杀杀杀</span><br><span class="line">sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install onboard deja-dup </span><br><span class="line"><span class="meta">#</span>干掉这么多，自动清理下</span><br><span class="line">sudo apt-get autoremove</span><br><span class="line"><span class="meta">#</span>更新源</span><br><span class="line">sudo apt upgrade</span><br><span class="line"><span class="meta">#</span>升级软件</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h4 id="2-5-2-删除无用软件、更新"><a href="#2-5-2-删除无用软件、更新" class="headerlink" title="2.5.2 删除无用软件、更新"></a>2.5.2 删除无用软件、更新</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">libreoffice 不好用杀之，后续安装wps凑合用</span></span><br><span class="line">sudo apt-get remove libreoffice-common </span><br><span class="line"><span class="meta"> #</span><span class="bash">Amazon链接好烦人，杀之</span></span><br><span class="line">sudo apt-get remove unity-webapps-common  </span><br><span class="line"><span class="meta">#</span><span class="bash">还有一堆 杀杀杀</span></span><br><span class="line">sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install onboard deja-dup </span><br><span class="line"><span class="meta">#</span><span class="bash">干掉这么多，自动清理下</span></span><br><span class="line">sudo apt-get autoremove</span><br><span class="line"><span class="meta">#</span><span class="bash">更新源</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"><span class="meta">#</span><span class="bash">升级软件</span></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 <p>安装编译器，和常用依赖库，16默认的gcc g++似乎都是5.4</p>
 <p><code>sudo apt-get install build-essential</code> </p>
 <h4 id="2-5-3-软件安装"><a href="#2-5-3-软件安装" class="headerlink" title="2.5.3 软件安装"></a>2.5.3 软件安装</h4><p>（1）搜狗输入法</p>
@@ -550,7 +549,7 @@
   <p><span>本文标题:</span><a href="/2018/06/02/ubuntu环境配置/">Ubuntu环境配置</a></p>
   <p><span>文章作者:</span><a href="sheldon-pan.github.ic" title="访问 Sheldon 的个人博客">Sheldon</a></p>
   <p><span>发布时间:</span>2018年06月02日 - 09:06</p>
-  <p><span>最后更新:</span>2019年12月16日 - 23:12</p>
+  <p><span>最后更新:</span>2019年12月18日 - 00:12</p>
   <p><span>原始链接:</span><a href="/2018/06/02/ubuntu环境配置/" title="Ubuntu环境配置">http://yoursite.com/2018/06/02/ubuntu环境配置/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/06/02/ubuntu环境配置/"  aria-label="复制成功！"></i></span>
   </p>
@@ -583,6 +582,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           
             <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
           
@@ -708,7 +709,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -719,7 +720,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -730,7 +731,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -824,7 +825,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.5k字</span>
+  <span class="post-count">博客全站共6.5k字</span>
 </div>
         
 
